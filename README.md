@@ -70,3 +70,21 @@ npm run format
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+Create User example
+
+```
+{
+    "login": "1",
+    "password": "4"
+}
+```
+
+Update User Password example
+
+```
+{
+    "oldPassword": "4",
+    "newPassword": "5"
+}
+```
