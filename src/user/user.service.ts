@@ -1,19 +1,16 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { users } from 'src/DB/db';
-import { v4, validate } from 'uuid';
+import { v4 } from 'uuid';
 import { CreateUserDto, UpdatePasswordDto, UserDto } from './dto';
 
 @Injectable()
 export class UserService {
 
-  async getAllUsers() {
+  async getAllUsers(): Promise<UserDto[]> {
     return users;
   }
 
-  async getUserById(id: string) {
-    // if(validate(id)) {
-    //   throw new BadRequestException('Opps! Invalid id!')
-    // }
+  async getUserById(id: string): Promise<UserDto> {
     const user = users.find((user) => user.id === id);
     if(!user) {
       throw new NotFoundException('User not found!')
@@ -21,7 +18,7 @@ export class UserService {
     return user;
   }
 
-  async createUser(user: CreateUserDto) {
+  async createUser(user: CreateUserDto): Promise<UserDto>  {
     const newUser = {
       id: v4(),
       ...user,
@@ -33,7 +30,7 @@ export class UserService {
     return newUser;
   }
 
-  async updateUser(id: string, user: UpdatePasswordDto) {
+  async updateUser(id: string, user: UpdatePasswordDto) :  Promise<UserDto> {
     const updatedUser: UserDto = await this.getUserById(id);
     if (user.oldPassword !== updatedUser.password) {
       throw new ForbiddenException('Password is wrong!');
@@ -51,7 +48,8 @@ export class UserService {
     if(index < 0){
       throw new NotFoundException('User not found!')
     }
-    return users.splice(index, 1)
+    users.splice(index, 1);
+    return "User deleted!"
   }
 
 }
