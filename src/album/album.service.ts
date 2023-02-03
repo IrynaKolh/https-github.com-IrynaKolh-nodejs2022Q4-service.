@@ -24,17 +24,17 @@ export class AlbumService {
     let newAlbum: AlbumDto;
     const artist = await this.artistService.getArtistById(album.artistId);
 
-    if (!artist){
+    if (artist){
+      newAlbum = {
+        id: v4(),
+        ...album,      
+      }     
+    } else {
       newAlbum = {
         id: v4(),
         name: album.name,
         year: album.year,
         artistId: null
-      }
-    } else {
-      newAlbum = {
-        id: v4(),
-        ...album,      
       }
     }
     albums.push(newAlbum);
