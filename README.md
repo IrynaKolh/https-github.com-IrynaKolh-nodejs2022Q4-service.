@@ -88,3 +88,22 @@ Update User Password example
     "newPassword": "5"
 }
 ```
+
+Create Artist example
+
+```
+{
+  "name": "string",
+  "grammy": false
+}
+```
+
+Create Album example
+
+```
+{
+ "name": "string",
+  "year": 1985,
+  "artistId": "COPY FROM CREATED ARTIST"  2dda9831-5344-44d9-934a-f0ba5bd7bbaf
+}
+```

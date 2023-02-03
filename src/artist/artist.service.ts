@@ -1,10 +1,10 @@
-import { BadRequestException, Body, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import {  Injectable, NotFoundException } from '@nestjs/common';
 import { artists } from 'src/DB/db';
-import { v4, validate } from 'uuid';
+import { v4 } from 'uuid';
 import { ArtistDto, CreateArtistDto, UpdateArtistDto } from './dto';
 
 @Injectable()
-export class ArtistService {
+export class ArtistService { 
 
   async getAllArtist(): Promise<ArtistDto[]> {
     return artists;
