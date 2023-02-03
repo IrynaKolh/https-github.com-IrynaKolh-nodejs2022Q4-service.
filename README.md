@@ -104,6 +104,17 @@ Create Album example
 {
  "name": "string",
   "year": 1985,
-  "artistId": "COPY FROM CREATED ARTIST"  2dda9831-5344-44d9-934a-f0ba5bd7bbaf
+  "artistId": "COPY FROM CREATED ARTIST"  47f5e7f3-9b82-497c-8a89-b320c3c765ec
+}
+```
+
+Create Track example
+
+```
+{
+  "name": "string",
+  "artistId": "COPY FROM CREATED ARTIST", 47f5e7f3-9b82-497c-8a89-b320c3c765ec
+  "albumId": "COPY FROM CREATED ALBUM", c3927eff-18b5-485e-bb36-af927ec0ae37
+  "duration": 3
 }
 ```
