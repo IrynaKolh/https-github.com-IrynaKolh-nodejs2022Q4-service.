@@ -1,9 +1,9 @@
-import { Exclude } from "class-transformer";
-import { IsString, IsInt } from "class-validator";
+import { Exclude } from 'class-transformer';
+import { IsString, IsInt } from 'class-validator';
 
 export class UserDto {
   @IsString()
-  readonly id: string; 
+  readonly id: string;
 
   @IsString()
   login: string;
@@ -16,8 +16,14 @@ export class UserDto {
   version: number;
 
   @IsInt()
-  readonly createdAt: number; 
-  
+  readonly createdAt: number;
+
   @IsInt()
-  updatedAt: number; 
+  updatedAt: number;
+
+  constructor(partial: Partial<UserDto>) {
+    Object.assign(this, partial);
+  }
 }
+
+// https://docs.nestjs.com/techniques/serialization#exclude-properties

@@ -1,12 +1,12 @@
-import { IsString, IsInt } from "class-validator";
+import { IsString, IsInt } from 'class-validator';
 
 export class TrackDto {
   @IsString()
-  readonly id: string; 
+  readonly id: string;
   @IsString()
   name: string;
-  artistId: string | null; 
-  albumId: string | null; 
+  artistId: string | null;
+  albumId: string | null;
   @IsInt()
-  duration: number; 
+  duration: number;
 }

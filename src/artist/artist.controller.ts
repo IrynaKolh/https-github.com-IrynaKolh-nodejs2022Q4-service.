@@ -1,11 +1,22 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ArtistService } from './artist.service';
 import { ArtistDto, CreateArtistDto, UpdateArtistDto } from './dto';
 
 @Controller('artist')
 export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}
-  
+
   @Get()
   async getAllUsers(): Promise<ArtistDto[]> {
     return await this.artistService.getAllArtist();
@@ -22,11 +33,15 @@ export class ArtistController {
   }
 
   @Put(':id')
-  async updateUser(@Body() body: UpdateArtistDto, @Param('id', new ParseUUIDPipe()) id): Promise<ArtistDto> {
+  async updateUser(
+    @Body() body: UpdateArtistDto,
+    @Param('id', new ParseUUIDPipe()) id,
+  ): Promise<ArtistDto> {
     return await this.artistService.updateArtist(id, body);
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   async deleteUser(@Param('id', new ParseUUIDPipe()) id) {
     await this.artistService.deleteArtist(id);
   }

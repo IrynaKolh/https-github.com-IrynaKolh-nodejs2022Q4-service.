@@ -1,1 +1,1 @@
-export { FavoriteDto } from './favoriteDto'
+export { FavoriteDto } from './favoriteDto';

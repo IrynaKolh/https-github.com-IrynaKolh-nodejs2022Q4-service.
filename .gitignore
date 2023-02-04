@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+test/artists.e2e.spec.ts
 
 # Logs
 logs

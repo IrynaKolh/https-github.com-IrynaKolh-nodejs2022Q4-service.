@@ -8,6 +8,6 @@ import { TrackService } from './track.service';
   imports: [AlbumModule, ArtistModule],
   controllers: [TrackController],
   providers: [TrackService],
-  exports: [TrackService]
+  exports: [TrackService],
 })
 export class TrackModule {}

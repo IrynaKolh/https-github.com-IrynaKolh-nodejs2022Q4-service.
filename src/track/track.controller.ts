@@ -1,14 +1,25 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateTrackDto, UpdateTrackDto, TrackDto } from './dto';
 import { TrackService } from './track.service';
 
 @Controller('track')
 export class TrackController {
   constructor(private readonly trackService: TrackService) {}
-  
+
   @Get()
   async getAllUsers(): Promise<TrackDto[]> {
-    return await this.trackService.getAllTracks()
+    return await this.trackService.getAllTracks();
   }
 
   @Get(':id')
@@ -22,14 +33,16 @@ export class TrackController {
   }
 
   @Put(':id')
-  async updateUser(@Body() body: UpdateTrackDto, @Param('id', new ParseUUIDPipe()) id): Promise<TrackDto> {
+  async updateUser(
+    @Body() body: UpdateTrackDto,
+    @Param('id', new ParseUUIDPipe()) id,
+  ): Promise<TrackDto> {
     return await this.trackService.updateTrack(id, body);
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   async deleteUser(@Param('id', new ParseUUIDPipe()) id) {
     await this.trackService.deleteTrack(id);
   }
 }
-
-
