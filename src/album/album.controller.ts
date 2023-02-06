@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
@@ -12,37 +11,39 @@ import {
 } from '@nestjs/common';
 import { CreateAlbumDto, UpdateAlbumDto, AlbumDto } from './dto';
 import { AlbumService } from './album.service';
+import { StatusCodes } from 'http-status-codes';
 
 @Controller('album')
 export class AlbumController {
   constructor(private readonly albumService: AlbumService) {}
 
   @Get()
-  async getAllUsers(): Promise<AlbumDto[]> {
+  async getAllAlbums(): Promise<AlbumDto[]> {
     return await this.albumService.getAllAlbums();
   }
 
   @Get(':id')
-  async getUserById(@Param('id', new ParseUUIDPipe()) id: string): Promise<AlbumDto> {
+  async getUAlbumById(@Param('id', ParseUUIDPipe) id: string) {
     return await this.albumService.getAlbumById(id);
   }
 
   @Post()
-  async createUser(@Body() body: CreateAlbumDto): Promise<AlbumDto> {
+  // @HttpCode(StatusCodes.CREATED)
+  async createAlbum(@Body() body: CreateAlbumDto): Promise<AlbumDto> {
     return await this.albumService.createAlbum(body);
   }
 
   @Put(':id')
-  async updateUser(
+  async updateAlbum(
     @Body() body: UpdateAlbumDto,
-    @Param('id', new ParseUUIDPipe()) id,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<AlbumDto> {
     return await this.albumService.updateAlbum(id, body);
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteUser(@Param('id', new ParseUUIDPipe()) id) {
+  @HttpCode(StatusCodes.NO_CONTENT)
+  async deleteAlbum(@Param('id', ParseUUIDPipe) id: string) {
     await this.albumService.deleteAlbum(id);
   }
 }

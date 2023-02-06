@@ -4,12 +4,13 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
   Put,
 } from '@nestjs/common';
+import { StatusCodes } from 'http-status-codes';
+
 import { CreateTrackDto, UpdateTrackDto, TrackDto } from './dto';
 import { TrackService } from './track.service';
 
@@ -23,11 +24,12 @@ export class TrackController {
   }
 
   @Get(':id')
-  async getUserById(@Param('id', new ParseUUIDPipe()) id: string): Promise<TrackDto> {
-    return await this.trackService.getTrackById(id);
+  async getUserById(@Param('id', ParseUUIDPipe) id: string): Promise<TrackDto> {
+    return this.trackService.getTrackById(id);
   }
 
   @Post()
+  // @HttpCode(StatusCodes.CREATED)
   async createUser(@Body() body: CreateTrackDto): Promise<TrackDto> {
     return await this.trackService.createTrack(body);
   }
@@ -35,14 +37,14 @@ export class TrackController {
   @Put(':id')
   async updateUser(
     @Body() body: UpdateTrackDto,
-    @Param('id', new ParseUUIDPipe()) id,
+    @Param('id', ParseUUIDPipe) id: string,
   ): Promise<TrackDto> {
     return await this.trackService.updateTrack(id, body);
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteUser(@Param('id', new ParseUUIDPipe()) id) {
+  @HttpCode(StatusCodes.NO_CONTENT)
+  async deleteUser(@Param('id', ParseUUIDPipe) id: string) {
     await this.trackService.deleteTrack(id);
   }
 }

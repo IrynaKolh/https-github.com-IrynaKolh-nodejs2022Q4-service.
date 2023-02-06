@@ -1,17 +1,22 @@
-import { IsString, IsInt, IsOptional, IsNotEmpty } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, ValidateIf, Min } from 'class-validator';
 
 export class CreateTrackDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @ValidateIf((object, value) => value !== null)
   artistId: string | null;
 
-  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @ValidateIf((object, value) => value !== null)
   albumId: string | null;
 
   @IsInt()
   @IsNotEmpty()
+  @Min(0)
   duration: number;
 }

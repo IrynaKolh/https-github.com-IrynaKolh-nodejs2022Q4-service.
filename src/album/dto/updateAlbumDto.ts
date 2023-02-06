@@ -1,12 +1,16 @@
-import { IsString, IsInt, IsOptional } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, ValidateIf } from 'class-validator';
 
 export class UpdateAlbumDto {
+  @IsNotEmpty()
   @IsString()
   name: string;
 
+  @IsNotEmpty()
   @IsInt()
   year: number;
 
-  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  @ValidateIf((object, value) => value !== null)
   artistId: string | null;
 }
