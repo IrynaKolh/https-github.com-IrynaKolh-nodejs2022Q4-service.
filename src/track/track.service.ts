@@ -65,7 +65,7 @@ export class TrackService {
 
   async deleteArtistFromTracks(id: string) {
     tracks.forEach((track, index) => {
-      if (track.id == id) {
+      if (track.artistId == id) {
         track.artistId = null;
         tracks[index] = track;
       }
@@ -74,7 +74,7 @@ export class TrackService {
 
   async deleteAlbumFromTracks(id: string) {
     tracks.forEach((track, index) => {
-      if (track.id == id) {
+      if (track.albumId == id) {
         track.albumId = null;
         tracks[index] = track;
       }
