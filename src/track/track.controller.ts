@@ -9,11 +9,13 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
 import { CreateTrackDto, UpdateTrackDto, TrackDto } from './dto';
 import { TrackService } from './track.service';
 
+@ApiTags('Track')
 @Controller('track')
 export class TrackController {
   constructor(private readonly trackService: TrackService) {}

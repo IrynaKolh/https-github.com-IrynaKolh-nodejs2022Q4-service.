@@ -12,7 +12,9 @@ import {
 import { CreateAlbumDto, UpdateAlbumDto, AlbumDto } from './dto';
 import { AlbumService } from './album.service';
 import { StatusCodes } from 'http-status-codes';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Album')
 @Controller('album')
 export class AlbumController {
   constructor(private readonly albumService: AlbumService) {}
