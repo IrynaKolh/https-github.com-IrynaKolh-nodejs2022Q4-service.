@@ -24,13 +24,13 @@ export class FavoriteController {
   @Post('track/:id')
   @HttpCode(StatusCodes.CREATED)
   async addTrackToFav(@Param('id', ParseUUIDPipe) id: string) {
-    return await this.favoriteService.addAlbumToFav(id);
+    return await this.favoriteService.addTrackToFav(id);
   }
 
   @Delete('track/:id')
   @HttpCode(StatusCodes.NO_CONTENT)
   async deleteTrackFromFav(@Param('id', ParseUUIDPipe) id: string) {
-    await this.favoriteService.deleteAlbumFromFav(id);
+    await this.favoriteService.deleteTrackFromFav(id);
   }
 
   @Post('album/:id')

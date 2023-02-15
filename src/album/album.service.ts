@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { ArtistService } from 'src/artist/artist.service';
 import { ArtistDto } from 'src/artist/dto';
-import { albums, artists } from 'src/DB/db';
+import { albums, artists } from 'DB/db';
 import { FavoriteService } from 'src/favorite/favorite.service';
 import { TrackService } from 'src/track/track.service';
 import { v4 } from 'uuid';

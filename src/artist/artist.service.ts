@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { AlbumService } from 'src/album/album.service';
-import { artists } from 'src/DB/db';
+import { artists } from 'DB/db';
 import { FavoriteService } from 'src/favorite/favorite.service';
 import { TrackService } from 'src/track/track.service';
 import { v4 } from 'uuid';

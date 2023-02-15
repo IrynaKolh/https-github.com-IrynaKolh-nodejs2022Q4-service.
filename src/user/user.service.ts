@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { users } from 'src/DB/db';
+import { users } from 'DB/db';
 import { v4 } from 'uuid';
 import { CreateUserDto, UpdatePasswordDto, UserDto } from './dto';
 

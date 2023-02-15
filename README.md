@@ -10,6 +10,16 @@
 ```
 git clone {repository URL}
 ```
+```
+git checkout dev-docker
+```
+## Containerization
+
+images are taken from docker hub
+
+```
+docker compose up
+```
 
 ## Installing NPM modules
 

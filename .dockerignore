@@ -1,0 +1,13 @@
+/dist
+**/node_modules
+/pgdata
+/logs
+test
+temp
+vccode
+.env*
+**/Dockerfile
+README.md
+doc
+.gitignore
+npm-debug.log

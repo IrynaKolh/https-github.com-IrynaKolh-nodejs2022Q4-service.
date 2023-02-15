@@ -5,7 +5,7 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { albums, artists, favorites, tracks } from 'src/DB/db';
+import { albums, artists, favorites, tracks } from 'DB/db';
 import { ArtistService } from './../artist/artist.service';
 import { AlbumService } from 'src/album/album.service';
 import { TrackService } from 'src/track/track.service';

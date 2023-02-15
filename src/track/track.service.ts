@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { AlbumDto } from 'src/album/dto';
 import { ArtistDto } from 'src/artist/dto';
-import { tracks, artists, albums } from 'src/DB/db';
+import { tracks, artists, albums } from 'DB/db';
 import { FavoriteService } from 'src/favorite/favorite.service';
 import { v4 } from 'uuid';
 import { CreateTrackDto, UpdateTrackDto, TrackDto } from './dto';
