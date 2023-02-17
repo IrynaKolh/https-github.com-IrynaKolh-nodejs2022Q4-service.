@@ -19,7 +19,7 @@ import {
     TrackModule,
     AlbumModule,
     FavoriteModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '../.env' }),
   ],
   controllers: [AppController],
   providers: [
