@@ -11,6 +11,7 @@ import {
   ClassSerializerInterceptor,
   ValidationPipe,
 } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import {
     AlbumModule,
     FavoriteModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '../.env' }),
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [
