@@ -39,6 +39,7 @@ services:
 
 networks:
    my-bridge:
+    driver: bridge
 volumes:
   pgdata:
   logs:
