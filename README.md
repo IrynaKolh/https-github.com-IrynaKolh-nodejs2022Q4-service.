@@ -11,7 +11,7 @@
 git clone {repository URL}
 ```
 ```
-git checkout dev-docker
+git checkout dev-postgres
 ```
 ## Containerization
 
