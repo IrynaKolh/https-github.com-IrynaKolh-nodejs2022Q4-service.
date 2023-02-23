@@ -16,10 +16,10 @@ export class UserDto {
   version: number;
 
   @IsInt()
-  readonly createdAt: Date;
+  readonly createdAt: Date | number;
 
   @IsInt()
-  updatedAt: Date;
+  updatedAt: Date | number;
 
   constructor(partial: Partial<UserDto>) {
     Object.assign(this, partial);

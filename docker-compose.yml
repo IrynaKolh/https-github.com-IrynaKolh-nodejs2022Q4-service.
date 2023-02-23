@@ -13,7 +13,7 @@ services:
       PORT: ${PORT}
       DATABASE_URL: ${DATABASE_URL}
     volumes:
-      - logs:/usr/src/app/logs
+      - ./src:/app/src     
     networks:
       - my-bridge
     env_file:

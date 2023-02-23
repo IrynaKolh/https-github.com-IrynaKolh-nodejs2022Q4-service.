@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAlbumDto, UpdateAlbumDto, AlbumDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-
 @Injectable()
 export class AlbumService {
   constructor(private prisma: PrismaService) {}
@@ -43,31 +42,5 @@ export class AlbumService {
     if (!foundAlbum) throw new NotFoundException('Album not found');
 
     await this.prisma.album.delete({ where: { id } });
-
-    // await this.trackService.deleteAlbumFromTracks(id);
-    // if (await this.favoriteService.checkAlbunInFav(id)) {
-    //   await this.favoriteService.deleteAlbumFromFav(id);
-    // }
   }
-
-  // async ifArtistExist(id: string | null) {
-  //   if (id === null) {
-  //     return;
-  //   } else {
-  //     const artist = artists.find((artist: ArtistDto) => artist.id === id);
-  //     if (!artist) {
-  //       throw new BadRequestException('Artist not found!');
-  //     }
-  //     return artist;
-  //   }
-  // }
-
-  // async removeArtistFromAlbums(id: string | null) {
-  //   albums.forEach((album, index) => {
-  //     if (album.artistId == id) {
-  //       album.artistId = null;
-  //       albums[index] = album;
-  //     }
-  //   });
-  // }
 }

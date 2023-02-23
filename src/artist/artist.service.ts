@@ -43,11 +43,5 @@ export class ArtistService {
     if (!foundArtist) throw new NotFoundException('Artist not found');
 
     await this.prisma.artist.delete({ where: { id } });
-
-    // await this.trackService.deleteArtistFromTracks(id);
-    // await this.albumService.removeArtistFromAlbums(id);
-    // if (await this.favoriteService.checkTrackInFav(id)) {
-    //   awa artists.splice(index, 1);it this.favoriteService.deleteArtistFromFav(id);
-    // }
   }
 }

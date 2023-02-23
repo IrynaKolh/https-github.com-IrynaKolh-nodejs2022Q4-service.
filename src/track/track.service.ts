@@ -45,24 +45,6 @@ export class TrackService {
     await this.prisma.track.delete({ where: { id } });
   }
 
-  // async deleteArtistFromTracks(id: string) {
-  //   tracks.forEach((track, index) => {
-  //     if (track.artistId == id) {
-  //       track.artistId = null;
-  //       tracks[index] = track;
-  //     }
-  //   });
-  // }
-
-  // async deleteAlbumFromTracks(id: string) {
-  //   tracks.forEach((track, index) => {
-  //     if (track.albumId == id) {
-  //       track.albumId = null;
-  //       tracks[index] = track;
-  //     }
-  //   });
-  // }
-
   // async ifArtistExist(id: string | null) {
   //   if (id === null) {
   //     return;

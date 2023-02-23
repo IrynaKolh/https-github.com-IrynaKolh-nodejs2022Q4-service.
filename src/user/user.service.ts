@@ -33,15 +33,9 @@ export class UserService {
     const newUser = await this.prisma.user.create({
       data: user,
     });
-    return newUser;
-    // } catch (error) {
-    //   if (error instanceof PrismaClientKnownRequestError) {
-    //     if (error.code === 'P2002') {
-    //       throw new ForbiddenException('Credentials taken');
-    //     }
-    //   }
-    //   throw error;
-    // }
+    const createTime = new Date(newUser.createdAt).getTime();
+    const updatedTime = new Date(newUser.updatedAt).getTime();
+    return { ...newUser, createdAt: createTime, updatedAt: updatedTime };
   }
 
   async updateUser(id: string, user: UpdatePasswordDto): Promise<UserDto> {
@@ -58,7 +52,9 @@ export class UserService {
         updatedAt: new Date(),
       },
     });
-    return updatedUser;
+    const createTime = new Date(updatedUser.createdAt).getTime();
+    const updatedTime = new Date(updatedUser.updatedAt).getTime();
+    return { ...updatedUser, createdAt: createTime, updatedAt: updatedTime };
   }
 
   async deleteUser(id: string) {
