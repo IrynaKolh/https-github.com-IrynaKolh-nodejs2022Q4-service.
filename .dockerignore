@@ -1,5 +1,6 @@
 /dist
 **/node_modules
+!nodes_modules/.prisma
 /pgdata
 /logs
 test
