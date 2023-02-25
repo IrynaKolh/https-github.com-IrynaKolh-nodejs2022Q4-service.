@@ -10,11 +10,15 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  Req,
+  Res,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { MyLoggerService } from 'src/logger/logger.service';
 import { CreateUserDto, UpdatePasswordDto, UserDto } from './dto';
 import { UserService } from './user.service';
+import { Request, Response } from 'express';
 
 @ApiTags('User')
 @Controller('user')

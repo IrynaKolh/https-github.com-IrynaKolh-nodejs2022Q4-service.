@@ -2,12 +2,16 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import 'dotenv/config';
+import { MyLoggerService } from './logger/logger.service';
 // import { ValidationPipe } from '@nestjs/common';
 
 const port = +process.env.PORT || 4000;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+    bufferLogs: true,
+  });
 
   // app.useGlobalPipes(
   //   new ValidationPipe({
@@ -25,6 +29,8 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc', app, document);
+
+  app.useLogger(app.get(MyLoggerService));
 
   await app.listen(port);
 }
