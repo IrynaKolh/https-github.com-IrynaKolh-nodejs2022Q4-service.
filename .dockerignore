@@ -6,7 +6,6 @@
 test
 temp
 vccode
-.env*
 **/Dockerfile
 README.md
 doc
