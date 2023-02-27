@@ -11,13 +11,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
 import { CreateTrackDto, UpdateTrackDto, TrackDto } from './dto';
 import { TrackService } from './track.service';
 
 @ApiTags('Track')
+@ApiBearerAuth('access-token')
 @Controller('track')
 export class TrackController {
   constructor(private readonly trackService: TrackService) {}

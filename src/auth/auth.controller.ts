@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/user/dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -29,6 +29,7 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard('JWT-refresh'))
+  @ApiBearerAuth('refresh-token')
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   async refresh(@Request() req) {

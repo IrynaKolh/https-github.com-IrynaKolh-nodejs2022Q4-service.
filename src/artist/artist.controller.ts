@@ -11,13 +11,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
 import { ArtistService } from './artist.service';
 import { ArtistDto, CreateArtistDto, UpdateArtistDto } from './dto';
 
 @ApiTags('Artist')
+@ApiBearerAuth('access-token')
 @Controller('artist')
 export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}

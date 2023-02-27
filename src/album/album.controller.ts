@@ -13,10 +13,11 @@ import {
 import { CreateAlbumDto, UpdateAlbumDto, AlbumDto } from './dto';
 import { AlbumService } from './album.service';
 import { StatusCodes } from 'http-status-codes';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Album')
+@ApiBearerAuth('access-token')
 @Controller('album')
 export class AlbumController {
   constructor(private readonly albumService: AlbumService) {}
