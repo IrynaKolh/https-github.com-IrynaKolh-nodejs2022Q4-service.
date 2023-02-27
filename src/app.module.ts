@@ -16,6 +16,7 @@ import {
 import { PrismaModule } from './prisma/prisma.module';
 import { LoggerModule } from './logger/logger.module';
 import { RequestLoggingMiddleware } from './logger/middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { RequestLoggingMiddleware } from './logger/middleware';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '../.env' }),
     PrismaModule,
     LoggerModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

@@ -6,6 +6,7 @@ import {
 import { PrismaService } from './../prisma/prisma.service';
 // import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { CreateUserDto, UpdatePasswordDto, UserDto } from './dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -29,6 +30,10 @@ export class UserService {
   }
 
   async createUser(user: CreateUserDto): Promise<UserDto> {
+    user.password = await bcrypt.hash(
+      user.password,
+      +process.env.CRYPT_SALT || 10,
+    );
     const newUser = await this.prisma.user.create({
       data: user,
     });
@@ -39,14 +44,21 @@ export class UserService {
 
   async updateUser(id: string, user: UpdatePasswordDto): Promise<UserDto> {
     const foundUser: UserDto = await this.getUserById(id);
-    if (user.oldPassword !== foundUser.password) {
+    const comparePassword = await bcrypt.compare(
+      user.oldPassword,
+      foundUser.password,
+    );
+    if (!comparePassword) {
       throw new ForbiddenException('Password is wrong!');
     }
 
     const updatedUser = await this.prisma.user.update({
       where: { id },
       data: {
-        password: user.newPassword,
+        password: await bcrypt.hash(
+          user.newPassword,
+          +process.env.CRYPT_SALT || 10,
+        ),
         version: foundUser.version + 1,
         updatedAt: new Date(),
       },
