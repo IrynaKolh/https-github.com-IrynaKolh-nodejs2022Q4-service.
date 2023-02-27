@@ -28,7 +28,7 @@ export class AuthController {
     return this.authService.login(login);
   }
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(AuthGuard('JWT-refresh'))
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   async refresh(@Request() req) {

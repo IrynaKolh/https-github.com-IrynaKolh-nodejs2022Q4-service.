@@ -8,7 +8,9 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
@@ -20,11 +22,13 @@ import { ArtistDto, CreateArtistDto, UpdateArtistDto } from './dto';
 export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}
 
+  @UseGuards(AuthGuard('JWT'))
   @Get()
   async getAllArtist(): Promise<ArtistDto[]> {
     return await this.artistService.getAllArtist();
   }
 
+  @UseGuards(AuthGuard('JWT'))
   @Get(':id')
   // @HttpCode(StatusCodes.OK)
   async getArtistById(
@@ -33,12 +37,14 @@ export class ArtistController {
     return this.artistService.getArtistById(id);
   }
 
+  @UseGuards(AuthGuard('JWT'))
   @Post()
   // @HttpCode(StatusCodes.CREATED)
   async createArtist(@Body() artist: CreateArtistDto): Promise<ArtistDto> {
     return await this.artistService.createArtist(artist);
   }
 
+  @UseGuards(AuthGuard('JWT'))
   @Put(':id')
   @HttpCode(StatusCodes.OK)
   async updateArtist(
@@ -48,6 +54,7 @@ export class ArtistController {
     return await this.artistService.updateArtist(id, body);
   }
 
+  @UseGuards(AuthGuard('JWT'))
   @Delete(':id')
   @HttpCode(StatusCodes.NO_CONTENT)
   async deleteArtist(@Param('id', ParseUUIDPipe) id: string) {

@@ -17,6 +17,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { LoggerModule } from './logger/logger.module';
 import { RequestLoggingMiddleware } from './logger/middleware';
 import { AuthModule } from './auth/auth.module';
+import { JwtStrategy } from './auth/jwtStrategy/jwt.strategy';
+import { RefreshStrategy } from './auth/jwtStrategy/refresh.strategy';
 
 @Module({
   imports: [
@@ -36,6 +38,8 @@ import { AuthModule } from './auth/auth.module';
       provide: APP_INTERCEPTOR,
       useClass: ClassSerializerInterceptor,
     },
+    JwtStrategy,
+    RefreshStrategy,
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
